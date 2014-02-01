@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     @users = User.all
-    @cinemas ||= Cinelist.reach("c")
+    @cinemas = Cinelist.select("api_id, name")
   end
 
   def films

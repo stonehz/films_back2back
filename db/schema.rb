@@ -11,13 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140201171402) do
+ActiveRecord::Schema.define(:version => 20140201212212) do
 
   create_table "cinelists", :force => true do |t|
     t.string "object_response"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string "name"
+    t.integer "api_id"
   end
+
+  add_index "cinelists", ["api_id"], :name => "index_cinelists_on_api_id"
 
   create_table "roles", :force => true do |t|
     t.string "name"
