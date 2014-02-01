@@ -1,0 +1,15 @@
+%h3 Home
+- @users.each do |user|
+  %p
+    User: #{link_to user.name, user}
+-#=@cinemas
+-#=collection = options_for_select(ActiveSupport::JSON.decode(@cinemas).map { |b| [b["name"], b["id"]] })
+-if current_user
+  =form_for "cinelist",url: films_path do |f|
+    %h4  Pick Cinema
+    =f.select :cinema_id, @cinemas.map {|v| [ v['name'], v['api_id'] ] },{ include_blank: false },{ class: 'chosen-select' }
+    %h4  Pick Date
+    =f.text_field "date", data: {behaviour:'datepicker'},class:"span2"
+    %br
+    =f.submit "Get me Movies", class:"button btn"
+
