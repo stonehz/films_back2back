@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     @users = User.all
-    @cinemas = Cinelist.reach("c")
+    @cinemas ||= Cinelist.reach("c")
   end
 
   def films
@@ -21,7 +21,7 @@ class HomeController < ApplicationController
       static_opts[:film]=movie_edi
       temp_times = Cinelist.reach("p", static_opts)
       temp_times.select! { |perf| perf["available"] == true && Cinelist.t(perf["time"])>=Cinelist.t(params[:movies][:time]) }
-      @film_times[movie_edi] = [movie_title, temp_times.collect { |perf| perf["time"] }]
+      @film_times[movie_edi] = [movie_title.try(:first), temp_times.collect { |perf| perf["time"] }, Cinelist.duration(movie_title.try(:first))]
     end
     #example output
     #"movies"=>{"date"=>"20140201", "time"=>"19:40", "results"=>{"144628"=>["The Wolf of Wall Street"], "109377"=>["12 Years A Slave"], "61662"=>["2D - I, Frankenstein"]}}
