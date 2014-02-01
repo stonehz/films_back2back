@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Object response:
+  = @cinelist.object_response
+
+= link_to 'Edit', edit_cinelist_path(@cinelist)
+\|
+= link_to 'Back', cinelists_path

@@ -1,0 +1,23 @@
+<h1>Listing cinelists</h1>
+
+<table>
+  <tr>
+    <th>Object</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cinelists.each do |cinelist| %>
+  <tr>
+    <td><%= cinelist.object %></td>
+    <td><%= link_to 'Show', cinelist %></td>
+    <td><%= link_to 'Edit', edit_cinelist_path(cinelist) %></td>
+    <td><%= link_to 'Destroy', cinelist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Cinelist', new_cinelist_path %>

@@ -1,0 +1,13 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th Title
+      %th Duration
+      %th Times
+  %tbody
+    -@film_times.each_pair do |key,val|
+      -unless val[1].blank?
+        %tr
+          %td=val[0]
+          %td=val[2]
+          %td=val[1]
