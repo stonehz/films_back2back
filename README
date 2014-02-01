@@ -1,3 +1,21 @@
+1) Grab Info for a cinema and a Date.. which films are played
+http://www.cineworld.co.uk/api/quickbook/films?key=AgmpyK4X&cinema=65&date=20140201
+2) Get Duration for each film using the title from the above
+http://www.omdbapi.com/?t=The%20Wolf%20of%20Wall%20Street&y=2013
+3) For each film ,we need to find available times for that date in that cinema
+http://www.cineworld.co.uk/api/quickbook/performances?key=AgmpyK4X&cinema=65&film=144628&date=20140201
+4) Cross check times with duration
+present available options
+set time
+exclude all times before that
+object with time,movie, duration
+ grab first,remove same movies, add duration in time and find the closest to that time
+ make the above a new object and present it
+ then next combination
+
+
+
+
 Rails3 + Twitter Bootstrap + Devise + CanCan
 ============================================
 
