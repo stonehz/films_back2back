@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Rails3BootstrapDeviseCancan::Application.load_tasks
+MoviesBack2Back::Application.load_tasks

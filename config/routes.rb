@@ -1,4 +1,4 @@
-Rails3BootstrapDeviseCancan::Application.routes.draw do
+MoviesBack2Back::Application.routes.draw do
   resources :cinelists
 
 
