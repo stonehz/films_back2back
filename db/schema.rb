@@ -14,40 +14,40 @@
 ActiveRecord::Schema.define(:version => 20140201212212) do
 
   create_table "cinelists", :force => true do |t|
-    t.string "object_response"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string "name"
-    t.integer "api_id"
+    t.string   "object_response"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "name"
+    t.integer  "api_id"
   end
 
   add_index "cinelists", ["api_id"], :name => "index_cinelists_on_api_id"
 
   create_table "roles", :force => true do |t|
-    t.string "name"
-    t.integer "resource_id"
-    t.string "resource_type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "users", :force => true do |t|
-    t.string "email", :default => "", :null => false
-    t.string "encrypted_password", :default => "", :null => false
-    t.string "reset_password_token"
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "sign_in_count", :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string "name"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

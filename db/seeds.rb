@@ -16,3 +16,10 @@ puts 'DEFAULT USERS'
 user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
 puts 'user: ' << user.name
 user.add_role :admin
+
+cinemas = Cinelist.reach("c")
+cinemas.each do |cinema|
+  puts "creating cinema #{cinema["name"]}"
+  Cinelist.find_or_create_by_api_id api_id: cinema["id"], name: cinema["name"]
+
+end
