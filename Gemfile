@@ -3,7 +3,10 @@ ruby '1.9.3'
 gem 'rails', '3.2.16'
 gem 'thin'
 gem 'sqlite3'
-gem 'mysql2'
+group :production do
+  #gem 'mysql2'
+  gem 'passenger', :require => false
+end
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
