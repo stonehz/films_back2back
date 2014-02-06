@@ -1,0 +1,21 @@
+
+=form_for "movies",url: results_path do |f|
+  = f.hidden_field :date, :value => @date
+  = f.hidden_field :cinema_id, :value => @cinema
+  -#%input( id="movies_starting_at" name="movies[starting_at]" type="time")
+  %h4 When you will start watching
+  .boostrap-timepicker
+    =f.text_field "time", data: {behaviour:'timepicker'},class:"input-small"
+    %i.icon-time
+  -#=f.check_box :pick_films, @films.map {|v| [ v['title'], v['edi'] ] }
+  %h4 Tick the movies you are interested to see
+  -@films.each do |film|
+    .span{style:"border: 1px solid;padding: 10px;"}
+      = image_tag film["poster_url"]
+      %br
+      = film["title"]
+      =f.fields_for "results" do |g|
+        =g.check_box film["edi"], { :multiple => true },film["title"],nil
+  .clearfix
+  %hr
+  =f.submit "Make it happen", class:"button btn"

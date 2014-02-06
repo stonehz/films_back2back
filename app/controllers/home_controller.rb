@@ -5,8 +5,14 @@ class HomeController < ApplicationController
   end
 
   def films
-    @date = params[:cinelist][:date].try(:gsub, "/", "")
+    unless params[:cinelist]["date(1i)"].blank? and params[:cinelist]["date(2i)"].blank? and params[:cinelist]["date(3i)"].blank?
+      d=Date.new(params[:cinelist]["date(1i)"].to_i,params[:cinelist]["date(2i)"].to_i, params[:cinelist]["date(3i)"].to_i)
+      @date = d.to_s.try(:gsub, "-", "")
+    else
+      @date = params[:cinelist][:date].try(:gsub, "/", "")
+    end
     @cinema = params[:cinelist][:cinema_id]
+
     opts = {cinema: params[:cinelist][:cinema_id], date: @date}
     @films = Cinelist.reach("f", opts)
   end

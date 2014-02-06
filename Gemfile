@@ -39,3 +39,7 @@ end
 gem 'chosen-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-timepicker-rails'
+
+gem 'execjs'
+gem 'therubyracer'
+gem 'mobile-fu'
