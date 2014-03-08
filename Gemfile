@@ -4,7 +4,7 @@ gem 'rails', '3.2.16'
 gem 'thin'
 gem 'sqlite3'
 group :production do
-  #gem 'mysql2'
+  gem 'mysql2'
   gem 'passenger', :require => false
 end
 group :assets do

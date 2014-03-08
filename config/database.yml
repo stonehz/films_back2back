@@ -1,56 +1,46 @@
-#development:
-#  adapter: mysql2
-#  encoding: utf8
-#  reconnect: false
-#  database: b2b_dev
-#  pool: 20
-#  username: root
-#  password:
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: ntasiou1_b2b_dev
+  pool: 20
+  username: ntasiou1_b2b
+  password: b2b@ntasioudis#@
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true
+  database: ntasiou1_b2b
+  pool: 20
+  username: ntasiou1_b2b
+  password: b2b@ntasioudis#@
+
+#  # SQLite version 3.x
+#  #   gem install sqlite3
+#  #
+#  #   Ensure the SQLite 3 gem is defined in your Gemfile
+#  #   gem 'sqlite3'
+#  development:
+#    adapter: sqlite3
+#    database: db/development.sqlite3
+#    pool: 5
+#    timeout: 5000
 #
-#test:
-#  adapter: mysql2
-#  encoding: utf8
-#  reconnect: false
-#  database: client_nhsbikes_test
-#  pool: 5
-#  username: root
-#  password:
-#  socket: /var/run/mysqld/mysqld.sock
+#  # Warning: The database defined as "test" will be erased and
+#  # re-generated from your development database when you run "rake".
+#  # Do not set this db to the same as development or production.
+#  test: &test
+#    adapter: sqlite3
+#    database: db/test.sqlite3
+#    pool: 5
+#    timeout: 5000
 #
-#production:
-#  adapter: mysql2
-#  encoding: utf8
-#  reconnect: true
-#  database: b2b_prod
-#  pool: 20
-#  username: root
-#  password:
-
-  # SQLite version 3.x
-  #   gem install sqlite3
-  #
-  #   Ensure the SQLite 3 gem is defined in your Gemfile
-  #   gem 'sqlite3'
-  development:
-    adapter: sqlite3
-    database: db/development.sqlite3
-    pool: 5
-    timeout: 5000
-
-  # Warning: The database defined as "test" will be erased and
-  # re-generated from your development database when you run "rake".
-  # Do not set this db to the same as development or production.
-  test: &test
-    adapter: sqlite3
-    database: db/test.sqlite3
-    pool: 5
-    timeout: 5000
-
-  production:
-    adapter: sqlite3
-    database: db/production.sqlite3
-    pool: 5
-    timeout: 5000
-
-  cucumber:
-    <<: *test
+#  production:
+#    adapter: sqlite3
+#    database: db/production.sqlite3
+#    pool: 5
+#    timeout: 5000
+#
+#  cucumber:
+#    <<: *test
