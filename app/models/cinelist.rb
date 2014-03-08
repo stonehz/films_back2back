@@ -23,12 +23,14 @@ class Cinelist < ActiveRecord::Base
       link << "&date="+options[:date].to_s if options[:date]
       link << "&film="+options[:film].to_s if options[:film]
       link << "&full=true" if api_type == "f"
-      uri = URI.parse(link)
-      http = Net::HTTP.new(uri.host, uri.port)
-      request = Net::HTTP::Get.new(uri.request_uri)
-      response = http.request(request)
-      response.body[link_type]
-      JSON.parse(response.body)[link_type]
+      Rails.cache.fetch(link, expires_in: 23.hours) do
+        uri = URI.parse(link)
+        http = Net::HTTP.new(uri.host, uri.port)
+        request = Net::HTTP::Get.new(uri.request_uri)
+        response = http.request(request)
+        response.body[link_type]
+        JSON.parse(response.body)[link_type]
+      end
     else
       ""
     end
@@ -39,13 +41,15 @@ class Cinelist < ActiveRecord::Base
     puts title
     if title
       title = title[5..-1] if title[0..1]=="2D" or title[0..1]=="3D"
-      puts title
+      #puts title
       link = ENV["IMDB_BY_TITLE"]+URI.encode(title)
-      uri = URI.parse(link)
-      http = Net::HTTP.new(uri.host, uri.port)
-      request = Net::HTTP::Get.new(uri.request_uri)
-      response = http.request(request)
-      JSON.parse(response.body)["Runtime"]
+      Rails.cache.fetch(link, expires_in: 23.hours) do
+        uri = URI.parse(link)
+        http = Net::HTTP.new(uri.host, uri.port)
+        request = Net::HTTP::Get.new(uri.request_uri)
+        response = http.request(request)
+        JSON.parse(response.body)["Runtime"]
+      end
     else
       ""
     end
