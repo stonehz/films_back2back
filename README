@@ -41,3 +41,7 @@ ________________________
 MIT License
 
 http://www.opensource.org/licenses/mit-license
+
+git filter-branch --force --index-filter \
+  'git rm --cached --ignore-unmatch config/application.yml' \
+  --prune-empty --tag-name-filter cat -- --all
