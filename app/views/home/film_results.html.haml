@@ -1,6 +1,15 @@
 %table.table.table-striped
   %thead
     %tr
+      %th Results
+  %tbody
+    -@results.each do |combination|
+      %tr
+        %td=combination.html_safe
+.clearfix
+%table.table.table-striped
+  %thead
+    %tr
       %th Title
       %th Duration
       %th Times

@@ -1,15 +1,57 @@
-%h3 Home
-- @users.each do |user|
-  %p
-    User: #{link_to user.name, user}
--#=@cinemas
--#=collection = options_for_select(ActiveSupport::JSON.decode(@cinemas).map { |b| [b["name"], b["id"]] })
--if current_user
-  =form_for "cinelist",url: films_path do |f|
-    %h4  Pick Cinema
-    =f.select :cinema_id, @cinemas.map {|v| [ v['name'], v['api_id'] ] },{ include_blank: false },{ class: 'chosen-select' }
-    %h4  Pick Date
-    =f.text_field "date", data: {behaviour:'datepicker'},class:"span2"
-    %br
-    =f.submit "Get me Movies", class:"button btn"
+-unless current_user
+  -#.tabbable
+  -#  %ul.nav.nav-tabs
+  -#    %li.active
+  -#      %a{"data-toggle" => "tab", href: "#tab1"} Quick pick
+  -#    %li
+  -#      %a{"data-toggle" => "tab", href: "#tab2"} Step by step Wizard
+  -#  .tab-content
+  -#    #tab1.tab-pane.active
+  -#      %h3  Quick Pick
+  -#      %i (all the movies paying from now)
+  -#      =form_for "cinelist",url: quickview_path do |f|
+  -#        %h4  Cinema
+  -#        =f.select :cinema_id, @cinemas.map {|v| [ v['name'], v['api_id'] ] },{ include_blank: false },{ class: 'chosen-select' }
+  -#        %br
+  -#        =f.submit "See Now", class:"button btn"
+  -#    #tab2.tab-pane
+  -#      %h3  Step by step Wizard
+  -#      %i (you can pick date, time, and which movies you are interested)
+  -#      =form_for "cinelist",url: films_path do |f|
+  -#        %h4  Pick Cinema
+  -#        =f.select :cinema_id, @cinemas.map {|v| [ v['name'], v['api_id'] ] },{ include_blank: false },{ class: 'chosen-select' }
+  -#        %h4  Pick Date
+  -#        =f.text_field "date", data: {behaviour:'datepicker'},class:"span2",value: Date.today
+  -#        %br
+  -#        =f.submit "Get me Movies", class:"button btn"
+  -#%h3 Home
+  -#- @users.each do |user|
+  -#  %p
+  -#    User: #{link_to user.name, user}
+  -#=@cinemas
+  -#=collection = options_for_select(ActiveSupport::JSON.decode(@cinemas).map { |b| [b["name"], b["id"]] })
+  .row-fluid
+    .span6
+      %h3  Quick Pick
+      %i (all the movies paying from now)
+      =form_for "cinelist",url: quickview_path do |f|
+        %h4  Cinema
+        =f.select :cinema_id, @cinemas.map {|v| [ v['name'], v['api_id'] ] },{ include_blank: false },{ class: 'chosen-select' }
+        %br
+        =f.submit "See Now", class:"button btn"
+      %h3 Favourite Cinemas
+      -@fav_cinemas.each do |cinema|
+        =link_to cinema, quickview_path(cinelist:{cinema_id:@cinemas.select{|z| z.name==cinema}.first["api_id"]}),method: :post
+        %br
+    .span6
+      %h3  Step by step Wizard
+      %i (you can pick date, time, and which movies you are interested)
+      =form_for "cinelist",url: films_path do |f|
+        %h4  Pick Cinema
+        =f.select :cinema_id, @cinemas.map {|v| [ v['name'], v['api_id'] ] },{ include_blank: false },{ class: 'chosen-select' }
+        %h4  Pick Date
+        =f.text_field "date", data: {behaviour:'datepicker'},class:"span2",value: Date.today, style: "width: 120px;"
+        %br
+        =f.submit "Get me Movies", class:"button btn"
+
 
